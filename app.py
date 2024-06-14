@@ -38,23 +38,16 @@ col1, col2 = st.columns(2)
 with col1:
     book = st.text_input('Enter book name that you liked : ')
 
-# Taking multiple fields to get similarity
-with col2:
-    feat = st.selectbox("Select Mode : ", ['Book_title', 'Rating', 'Price'])
-
 # Function to get recommendations
-def get_recommendations(book_name, feature, df, title_vectors, mode):
+def get_recommendations(book_name, df, title_vectors):
     try:
         book_index = df[df['Book_title'].str.contains(book_name, case=False)].index[0]
     except IndexError:
         return pd.DataFrame({"Error": ["Book not found"]})
 
-    if mode == 'Book_title':
-        similarities = cosine_similarity([title_vectors[book_index]], title_vectors).flatten()
-        similar_indices = similarities.argsort()[-2::-1]  # Exclude the book itself
-        similar_books = df.iloc[similar_indices][['Book_title', 'Rating', 'Price']]
-    else:
-        similar_books = df.sort_values(by=mode, ascending=False).head(10)[['Book_title', 'Rating', 'Price']]
+    similarities = cosine_similarity([title_vectors[book_index]], title_vectors).flatten()
+    similar_indices = similarities.argsort()[-2::-1]  # Exclude the book itself
+    similar_books = df.iloc[similar_indices][['Book_title']]
     
     return similar_books
 
@@ -62,7 +55,7 @@ def get_recommendations(book_name, feature, df, title_vectors, mode):
 if st.button('Search'):
     if book:
         st.success(f'Recommending books similar to {book}')
-        recommendations = get_recommendations(book, 'Book_title', df, title_vectors, feat)
+        recommendations = get_recommendations(book, df, title_vectors)
         st.dataframe(recommendations, width=700, height=400)
     else:
         st.error('Please enter a book name.')
