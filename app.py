@@ -10,6 +10,7 @@ import nltk
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
+    import nltk
     nltk.download('stopwords')
 
 from nltk.corpus import stopwords
