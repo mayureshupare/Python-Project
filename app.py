@@ -6,9 +6,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 from string import punctuation
 import nltk
 
-# Download NLTK resources (if not already downloaded)
+# Download NLTK resources (stopwords) if not already downloaded
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
 
-nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 # Load data
