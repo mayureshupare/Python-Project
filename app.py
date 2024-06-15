@@ -1,10 +1,11 @@
+import nltk
 import streamlit as st
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from string import punctuation
-import nltk
+
 
 # Download NLTK resources
 nltk.download('stopwords')
