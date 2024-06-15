@@ -8,8 +8,9 @@ from string import punctuation
 
 
 # Download NLTK resources
+
+import nltk
 nltk.download('stopwords')
-from nltk.corpus import stopwords
 
 # Load data
 df = pd.read_csv('prog_book.csv')
