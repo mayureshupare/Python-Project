@@ -1,16 +1,15 @@
-import nltk
 import streamlit as st
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from string import punctuation
-
-
-# Download NLTK resources
-
 import nltk
+
+# Download NLTK resources (if not already downloaded)
+
 nltk.download('stopwords')
+from nltk.corpus import stopwords
 
 # Load data
 df = pd.read_csv('prog_book.csv')
