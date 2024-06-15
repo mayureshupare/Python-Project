@@ -3,8 +3,8 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from scikit-learn.feature_extraction.text import TfidfVectorizer
+from scikit-learn.metrics.pairwise import cosine_similarity
 from string import punctuation
 from nltk.corpus import stopwords
 import nltk
