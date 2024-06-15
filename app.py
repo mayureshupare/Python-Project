@@ -4,12 +4,14 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from string import punctuation
-import nltk
 
-# Download NLTK resources (stopwords) if not already downloaded
+# Ensure NLTK is installed and import
 try:
+    import nltk
     nltk.data.find('corpora/stopwords')
-except LookupError:
+except (ImportError, LookupError):
+    import subprocess
+    subprocess.run('pip install nltk', shell=True)
     import nltk
     nltk.download('stopwords')
 
