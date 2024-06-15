@@ -1,22 +1,20 @@
-#Programming Book recommendations System
-
 import streamlit as st
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from string import punctuation
-from nltk.corpus import stopwords
 import nltk
 
-# Download stopwords
+# Download NLTK resources
 nltk.download('stopwords')
-stop = set(stopwords.words('english'))
+from nltk.corpus import stopwords
 
 # Load data
 df = pd.read_csv('prog_book.csv')
 
 # Function to clean text
+stop = set(stopwords.words('english'))
 def clean_text(text):
     text = ''.join([char for char in text if char not in punctuation])
     text = text.lower()
