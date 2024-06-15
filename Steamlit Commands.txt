@@ -1,0 +1,12 @@
+Programming Book recommendations System
+
+
+python -m venv myenv
+
+myenv\Scripts\activate
+
+pip install streamlit numpy pandas scikit-learn nltk
+
+python -c "import nltk; nltk.download('stopwords')"
+
+streamlit run app.py
